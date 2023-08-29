@@ -10,7 +10,7 @@ COPY db.py db.py
 
 # Copy all of the subdirectories in your service's directory
 # Modify these instructions to do that
-COPY api api
+COPY queries queries
 COPY migrations migrations
 
 RUN python -m pip install -r requirements.txt
