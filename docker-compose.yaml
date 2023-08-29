@@ -6,13 +6,11 @@ volumes:
 
 services:
   postgres:
-    build:
-      context: ./api
-      dockerfile: ./Dockerfile.dev
+    image: postgres:14.5-bullseye
     environment:
-      POSTGRES_DATABASE: jeoparty
-      POSTGRES_PASSWORD: password
-      POSTGRES_USER: user
+      - POSTGRES_DB=jeoparty
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=user
     ports:
       - 5432:5432
     volumes:
