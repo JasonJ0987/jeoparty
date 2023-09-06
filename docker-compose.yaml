@@ -34,7 +34,7 @@ services:
     volumes:
       - ./ghi:/app
     ports:
-      - "3000:3000"
+      - 3000:3000
     environment:
       HOST_OS: ${OS}
       NODE_ENV: development
@@ -46,8 +46,10 @@ services:
     volumes:
       - pg-admin:/var/lib/pgadmin
     ports:
-      - 8082:8082
+      - 8082:80
+      # needs to be 8082:80 and need to specify the listening address
     environment:
       PGADMIN_DEFAULT_EMAIL: juiceman2009@hotmail.com
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
       PGADMIN_DISABLE_POSTFIX: 1
+      PGADMIN_LISTEN_ADDRESS: 0.0.0.0
