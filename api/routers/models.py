@@ -12,3 +12,5 @@ class questions(BaseModel):
   question: str
   answer: str
   category_id: List[categories]
+
+
