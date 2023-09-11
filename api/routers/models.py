@@ -1,17 +1,14 @@
-# from pydantic import BaseModel
-# from typing import Optional
+from pydantic import BaseModel
+from typing import List
 
 
-# class QuestionIn(BaseModel):
-#   question: str
-#   answer: str
+class categories(BaseModel):
+  id: int
+  title: str
 
-# class QuestionOut(QuestionIn):
-#   id: int
 
-# class CategoryIn(BaseModel):
-#   title: str
-#   questions: list[QuestionOut]
-
-# class CategoryOut(CategoryIn):
-#   id: int
+class questions(BaseModel):
+  id: int
+  question: str
+  answer: str
+  category_id: List[categories]
