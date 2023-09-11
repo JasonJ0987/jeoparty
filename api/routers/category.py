@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends
-from api.routers.models import categories
+from routers.models import categories
 from db import CategoryQueries
 
-router = APIrouter()
+router = APIRouter()
 
 @router.get("/api/categories/", response_model=categories)
 async def get_categories(

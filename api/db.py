@@ -2,7 +2,7 @@
 
 import os
 from psycopg_pool import ConnectionPool
-from api.routers.models import (
+from routers.models import (
   categories,
   questions
 )
