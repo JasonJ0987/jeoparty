@@ -16,7 +16,7 @@ def get_categories(
 @router.post("/api/categories/", response_model=CategoriesOut)
 def create_category(
   title: CategoriesIn,
-  queries: CategoryQueries = Depends(),
+  queries: CategoryQueries = Depends()
 ):
   result = queries.create_category(title)
   return result
