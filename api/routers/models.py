@@ -2,15 +2,30 @@ from pydantic import BaseModel
 from typing import List
 
 
-class categories(BaseModel):
+
+class PlayersIn(BaseModel):
+  name: str
+  points: int
+
+
+class PlayersOut(PlayersIn):
   id: int
+
+
+class CategoriesIn(BaseModel):
   title: str
 
 
-class questions(BaseModel):
-  id: int
+class CategoriesOut(CategoriesIn):
+ id: int
+
+
+class QuestionsIn(BaseModel):
   question: str
   answer: str
-  category_id: List[categories]
+  points: int
+  category_id: int
 
 
+class QuestionsOut(QuestionsIn):
+  id: int

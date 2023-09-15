@@ -3,8 +3,12 @@
 import os
 from psycopg_pool import ConnectionPool
 from routers.models import (
-  categories,
-  questions
+  CategoriesIn,
+  CategoriesOut,
+  QuestionsIn,
+  QuestionsOut,
+  PlayersIn,
+  PlayersOut
 )
 
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
@@ -16,7 +20,8 @@ class CategoryQueries:
       with conn.cursor() as cur:
         cur.execute(
           """
-            SELECT *
+            SELECT id
+            , title
             FROM categories
           """
         )
@@ -28,21 +33,30 @@ class CategoryQueries:
           results.append(record)
         return results
 
-  def create_category(self, ntitle: str) -> categories:
+  def create_category(self, category: CategoriesIn) -> CategoriesOut:
     with pool.connection() as conn:
       with conn.cursor() as cur:
         result = cur.execute(
           """
-          INSERT INTO categories (
-            title
-          )
+          INSERT INTO categories (title)
           VALUES (%s)
           RETURNING id, title
-          """
-          [ntitle]
+          """,
+          [category.title],
         )
         id = result.fetchone()[0]
-        return categories(
+        return CategoriesOut(
           id=id,
-          title=ntitle
+          title=category.title
+        )
+
+  def delete_category(self, category_id: int):
+    with pool.connection() as conn:
+      with conn.cursor() as cur:
+        result = cur.execute(
+          """
+          DELETE FROM categories
+          WHERE id = %s
+          """,
+          [category_id],
         )
