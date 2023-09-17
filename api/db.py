@@ -96,3 +96,61 @@ class PlayerQueries:
           name=player.name,
           points=player.points
         )
+
+
+class QuestionQueries:
+  def get_all_questions(self):
+    with pool.connection() as conn:
+      with conn.cursor() as cur:
+        cur.execute(
+          """
+          SELECT *
+          FROM questions
+          """
+        )
+        results = []
+        for row in cur.fetchall():
+          record = {}
+          for i, column in enumerate(cur.description):
+            record[column.name] = row[i]
+          results.append(record)
+        return results
+
+  def create_question(self, question: QuestionsIn) -> QuestionsOut:
+    with pool.connection() as conn:
+      with conn.cursor() as cur:
+        result = cur.execute(
+          """
+          INSERT INTO questions (question, answer, points, category_id)
+          VALUES (%s, %s, %s, %s)
+          RETURNING id, question, answer, points, category_id
+          """,
+          [question.question, question.answer, question.points, question.category_id]
+        )
+        id = result.fetchone()[0]
+        return QuestionsOut(
+          id=id,
+          question=question.question,
+          answer=question.answer,
+          points=question.points,
+          category_id=question.category_id
+        )
+
+  def get_questions_by_category(self, category_id:int):
+    with pool.connection() as conn:
+      with conn.cursor() as cur:
+        cur.execute(
+          """
+          SELECT *
+          FROM questions
+          WHERE category_id = %s
+          """,
+          [category_id],
+        )
+        results = []
+        for row in cur.fetchall():
+          record = {}
+          for i, column in enumerate(cur.description):
+            record[column.name] = row[i]
+          results.append(record)
+        return results

@@ -15,6 +15,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(category.router)
-# app.include_router(question.router)
-app.include_router(player.router)
+app.include_router(category.router, tags=["categories"])
+app.include_router(question.router, tags=["questions"])
+app.include_router(player.router, tags=["players"])
+
+# TODO: Bomb database then add a new model for "game" that includes
+# 1. 5 categories and 5 questions per category and three players
+# 2. The ability to update a game's settings
+# 3. The ability to create a new game, maybe for double jeopardy rounds
+# 4. The ability to delete a game
