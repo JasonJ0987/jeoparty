@@ -1,6 +1,6 @@
 from fastapi import FastAPI, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
-from routers import category, question, player
+from routers import category, question, player, game
 import os
 
 app = FastAPI()
@@ -18,9 +18,5 @@ app.add_middleware(
 app.include_router(category.router, tags=["categories"])
 app.include_router(question.router, tags=["questions"])
 app.include_router(player.router, tags=["players"])
+app.include_router(game.router, tags=["games"])
 
-# TODO: Bomb database then add a new model for "game" that includes
-# 1. 5 categories and 5 questions per category and three players
-# 2. The ability to update a game's settings
-# 3. The ability to create a new game, maybe for double jeopardy rounds
-# 4. The ability to delete a game
