@@ -24,8 +24,30 @@ def create_category(
 
 @router.delete("/api/categories/{category_id}", response_model=bool)
 def delete_category(
-  category_id,
+  category_id: int,
   queries: CategoryQueries = Depends()
 ):
-  queries.delete_category(category_id)
-  return True
+  try:
+    queries.delete_category(category_id)
+    return True
+  except:
+    return False
+
+
+@router.get("/api/categories/{category_id}", response_model=CategoriesOut)
+def get_one_category(
+  category_id: int,
+  queries: CategoryQueries = Depends()
+):
+  result = queries.get_one_category(category_id)
+  return result
+
+
+@router.put("/api/categories/{category_id}", response_model=CategoriesOut)
+def rename_category(
+  new_title: str,
+  category_id: int,
+  queries: CategoryQueries = Depends()
+):
+  result = queries.rename_category(new_title, category_id)
+  return result

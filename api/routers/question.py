@@ -20,7 +20,7 @@ def create_question(
   result = queries.create_question(question_info)
   return result
 
-@router.get("/api/questions/{category_id}", response_model=List[QuestionsOut])
+@router.get("/api/questions//{category_id}", response_model=List[QuestionsOut])
 def get_questions_by_category(
   category_id,
   queries: QuestionQueries = Depends()

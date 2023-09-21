@@ -62,6 +62,43 @@ class CategoryQueries:
           [category_id],
         )
 
+  def get_one_category(self, category_id: int) -> CategoriesOut:
+    with pool.connection() as conn:
+      with conn.cursor() as cur:
+        result = cur.execute(
+          """
+          SELECT *
+          FROM categories
+          WHERE id = %s
+          """,
+          [category_id],
+        )
+        title=result.fetchone()[1]
+        return CategoriesOut(
+          id=category_id,
+          title=title
+        )
+
+  def rename_category(self, new_title: str, category_id: int) -> CategoriesOut:
+    with pool.connection() as conn:
+      with conn.cursor() as cur:
+        cur.execute(
+          """
+          UPDATE categories
+          SET title = %s
+          WHERE id = %s
+          RETURNING id, title
+          """,
+          [new_title, category_id],
+        )
+        record = None
+        row = cur.fetchone()
+        if row is not None:
+          record = {}
+          for i, column in enumerate(cur.description):
+            record[column.name] = row[i]
+        return record
+
 
 class PlayerQueries:
   def get_all_players(self):
@@ -97,6 +134,75 @@ class PlayerQueries:
           id=id,
           name=player.name,
           points=player.points
+        )
+
+  def get_one_player(self, player_id: int) -> PlayersOut:
+    with pool.connection() as conn:
+      with conn.cursor() as cur:
+        result = cur.execute(
+          """
+          SELECT *
+          FROM players
+          WHERE id = %s
+          """,
+          [player_id],
+        )
+        data = result.fetchone()
+        return PlayersOut(
+          id=player_id,
+          name=data[1],
+          points=data[2]
+        )
+
+  def rename_player(self, name: str, player_id: int) -> PlayersOut:
+    with pool.connection() as conn:
+      with conn.cursor() as cur:
+        cur.execute(
+          """
+          UPDATE players
+          SET name = %s
+          WHERE id = %s
+          RETURNING id, name, points
+          """,
+          [name, player_id],
+        )
+        record = None
+        row = cur.fetchone()
+        if row is not None:
+          record = {}
+          for i, column in enumerate(cur.description):
+            record[column.name] = row[i]
+        return record
+
+  def update_points(self, points:int, player_id: int) -> PlayersOut:
+    with pool.connection() as conn:
+      with conn.cursor() as cur:
+        cur.execute(
+          """
+          UPDATE players
+          SET points = %s
+          WHERE id = %s
+          RETURNING id, name, points
+          """,
+          [points, player_id],
+        )
+        record = None
+        row = cur.fetchone()
+        if row is not None:
+          record = {}
+          for i, column in enumerate(cur.description):
+            record[column.name] = row[i]
+        return record
+
+  def delete_player(self, player_id: int):
+    with pool.connection() as conn:
+      with conn.cursor() as cur:
+        cur.execute(
+          """
+          DELETE FROM players
+          WHERE id = %s
+          """,
+          [player_id],
         )
 
 

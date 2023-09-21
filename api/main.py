@@ -20,3 +20,6 @@ app.include_router(question.router, tags=["questions"])
 app.include_router(player.router, tags=["players"])
 app.include_router(game.router, tags=["games"])
 
+# To Solve:
+
+# 1. FK issues with games when deleting categories and questions
