@@ -12,12 +12,13 @@ from routers.models import (
   GamesIn,
   GamesOut,
 )
+from typing import List
 
 pool = ConnectionPool(conninfo=os.environ["DATABASE_URL"])
 
 
 class CategoryQueries:
-  def get_all_categories(self):
+  def get_all_categories(self) -> List[CategoriesOut]:
     with pool.connection() as conn:
       with conn.cursor() as cur:
         cur.execute(
@@ -101,7 +102,7 @@ class CategoryQueries:
 
 
 class PlayerQueries:
-  def get_all_players(self):
+  def get_all_players(self) -> List[PlayersOut]:
     with pool.connection() as conn:
       with conn.cursor() as cur:
         cur.execute(
@@ -207,7 +208,7 @@ class PlayerQueries:
 
 
 class QuestionQueries:
-  def get_all_questions(self):
+  def get_all_questions(self) -> List[QuestionsOut]:
     with pool.connection() as conn:
       with conn.cursor() as cur:
         cur.execute(
@@ -244,7 +245,7 @@ class QuestionQueries:
           category_id=question.category_id
         )
 
-  def get_questions_by_category(self, category_id:int):
+  def get_questions_by_category(self, category_id: int) -> List[QuestionsOut]:
     with pool.connection() as conn:
       with conn.cursor() as cur:
         cur.execute(
@@ -262,6 +263,72 @@ class QuestionQueries:
             record[column.name] = row[i]
           results.append(record)
         return results
+
+  def get_one_question(self, question_id: int) -> QuestionsOut:
+    with pool.connection() as conn:
+      with conn.cursor() as cur:
+        result = cur.execute(
+          """
+          SELECT *
+          FROM questions
+          WHERE id = %s
+          """,
+          [question_id]
+        )
+        data = result.fetchone()
+        return QuestionsOut(
+          id=question_id,
+          question=data[1],
+          answer=data[2],
+          points=data[3],
+          category_id=data[4]
+        )
+
+  def update_question(self, question_id: int, new_question: QuestionsIn) -> QuestionsOut:
+    with pool.connection() as conn:
+      with conn.cursor() as cur:
+        cur.execute(
+          """
+          UPDATE questions
+          SET
+            question = %s,
+            answer = %s,
+            points = %s,
+            category_id = %s
+          WHERE id = %s
+          RETURNING
+          id,
+          question,
+          answer,
+          points,
+          category_id
+          """,
+          [
+            new_question.question,
+            new_question.answer,
+            new_question.points,
+            new_question.category_id,
+            question_id
+          ],
+        )
+        record = None
+        row = cur.fetchone()
+        if row is not None:
+          record = {}
+          for i, column in enumerate(cur.description):
+            record[column.name] = row[i]
+        return record
+
+  def delete_question(self, question_id: int):
+    with pool.connection() as conn:
+      with conn.cursor() as cur:
+        cur.execute(
+          """
+          DELETE FROM questions
+          WHERE id = %s
+          """,
+          [question_id]
+        )
 
 
 class GameQueries:

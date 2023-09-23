@@ -32,36 +32,36 @@ class QuestionsOut(QuestionsIn):
 
 
 class GamesIn(BaseModel):
-  category_1: int
-  category_2: int
-  category_3: int
-  category_4: int
-  category_5: int
-  question_1: int
-  question_2: int
-  question_3: int
-  question_4: int
-  question_5: int
-  question_6: int
-  question_7: int
-  question_8: int
-  question_9: int
-  question_10: int
-  question_11: int
-  question_12: int
-  question_13: int
-  question_14: int
-  question_15: int
-  question_16: int
-  question_17: int
-  question_18: int
-  question_19: int
-  question_20: int
-  question_21: int
-  question_22: int
-  question_23: int
-  question_24: int
-  question_25: int
+  category_1: int | None
+  category_2: int | None
+  category_3: int | None
+  category_4: int | None
+  category_5: int | None
+  question_1: int | None
+  question_2: int | None
+  question_3: int | None
+  question_4: int | None
+  question_5: int | None
+  question_6: int | None
+  question_7: int | None
+  question_8: int | None
+  question_9: int | None
+  question_10: int | None
+  question_11: int | None
+  question_12: int | None
+  question_13: int | None
+  question_14: int | None
+  question_15: int | None
+  question_16: int | None
+  question_17: int | None
+  question_18: int | None
+  question_19: int | None
+  question_20: int | None
+  question_21: int | None
+  question_22: int | None
+  question_23: int | None
+  question_24: int | None
+  question_25: int | None
 
 
 class GamesOut(GamesIn):
