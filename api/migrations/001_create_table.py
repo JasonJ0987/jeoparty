@@ -29,6 +29,7 @@ steps = [
       question VARCHAR(255) NOT NULL,
       answer VARCHAR(255) NOT NULL,
       points INTEGER NOT NULL,
+      double_j BOOL DEFAULT FALSE NOT NULL,
       category_id INTEGER REFERENCES categories("id") ON DELETE CASCADE
     );
     """,

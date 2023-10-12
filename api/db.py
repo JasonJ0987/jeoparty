@@ -1,5 +1,3 @@
-# where all the querying happens
-
 import os
 from psycopg_pool import ConnectionPool
 from routers.models import (
@@ -230,11 +228,11 @@ class QuestionQueries:
       with conn.cursor() as cur:
         result = cur.execute(
           """
-          INSERT INTO questions (question, answer, points, category_id)
-          VALUES (%s, %s, %s, %s)
-          RETURNING id, question, answer, points, category_id
+          INSERT INTO questions (question, answer, points, double_j, category_id)
+          VALUES (%s, %s, %s, %s, %s)
+          RETURNING id, question, answer, points, double_j, category_id
           """,
-          [question.question, question.answer, question.points, question.category_id]
+          [question.question, question.answer, question.points, question.double_j, question.category_id]
         )
         id = result.fetchone()[0]
         return QuestionsOut(
@@ -242,6 +240,7 @@ class QuestionQueries:
           question=question.question,
           answer=question.answer,
           points=question.points,
+          double_j=question.double_j,
           category_id=question.category_id
         )
 
@@ -281,7 +280,8 @@ class QuestionQueries:
           question=data[1],
           answer=data[2],
           points=data[3],
-          category_id=data[4]
+          double_j=data[4],
+          category_id=data[5]
         )
 
   def update_question(self, question_id: int, new_question: QuestionsIn) -> QuestionsOut:
@@ -294,6 +294,7 @@ class QuestionQueries:
             question = %s,
             answer = %s,
             points = %s,
+            double_j = %s,
             category_id = %s
           WHERE id = %s
           RETURNING
@@ -301,12 +302,14 @@ class QuestionQueries:
           question,
           answer,
           points,
+          double_j,
           category_id
           """,
           [
             new_question.question,
             new_question.answer,
             new_question.points,
+            new_question.double_j,
             new_question.category_id,
             question_id
           ],
@@ -315,6 +318,7 @@ class QuestionQueries:
         row = cur.fetchone()
         if row is not None:
           record = {}
+          
           for i, column in enumerate(cur.description):
             record[column.name] = row[i]
         return record
@@ -332,7 +336,7 @@ class QuestionQueries:
 
 
 class GameQueries:
-  def get_all_games(self):
+  def get_all_games(self) -> List[GamesOut]:
     with pool.connection() as conn:
       with conn.cursor() as cur:
         cur.execute(
@@ -519,7 +523,7 @@ class GameQueries:
           question_25=game_info.question_25
         )
 
-  def update_game(self, gd, game_id: int):
+  def update_game(self, gd, game_id: int) -> GamesOut:
     with pool.connection() as conn:
       with conn.cursor() as cur:
         params = [
@@ -644,7 +648,7 @@ class GameQueries:
           [game_id],
         )
 
-  def get_one_game(self, game_id: int):
+  def get_one_game(self, game_id: int) -> GamesOut:
     with pool.connection() as conn:
       with conn.cursor() as cur:
         cur.execute(

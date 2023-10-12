@@ -2,7 +2,6 @@ from pydantic import BaseModel
 from typing import List
 
 
-
 class PlayersIn(BaseModel):
   name: str
   points: int
@@ -24,6 +23,7 @@ class QuestionsIn(BaseModel):
   question: str
   answer: str
   points: int
+  double_j: bool
   category_id: int
 
 
