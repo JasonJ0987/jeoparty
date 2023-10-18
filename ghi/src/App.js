@@ -4,6 +4,7 @@ import "./App.css";
 import Main from "./Main";
 import Navbar from "./NavBar";
 import CategoryForm from "./CreateCategory";
+import QuestionForm from "./CreateQuestion";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Main />} />
           <Route exact path="/categories" element={<CategoryForm />} />
+          <Route exact path="/questions" element={<QuestionForm /> } />
         </Routes>
     </div>
   </BrowserRouter>
