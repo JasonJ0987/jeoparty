@@ -6,6 +6,12 @@ function Navbar() {
       <Link to="/" className="logo">
         Home
       </Link>
+      <Link to="/categories">
+        Categories
+      </Link>
+      <Link to="/questions">
+        Questions
+      </Link>
     </nav>
   )
 }

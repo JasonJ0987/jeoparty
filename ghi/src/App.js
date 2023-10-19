@@ -5,6 +5,8 @@ import Main from "./Main";
 import Navbar from "./NavBar";
 import CategoryForm from "./CreateCategory";
 import QuestionForm from "./CreateQuestion";
+import AllCategories from "./Categories";
+import AllQuestions from "./Questions";
 
 function App() {
   return (
@@ -13,8 +15,14 @@ function App() {
       <Navbar />
         <Routes>
           <Route exact path="/" element={<Main />} />
-          <Route exact path="/categories" element={<CategoryForm />} />
-          <Route exact path="/questions" element={<QuestionForm /> } />
+          <Route path="categories">
+            <Route index element={<AllCategories />} />
+            <Route path="new" element={<CategoryForm />} />
+          </Route>
+          <Route path="questions">
+            <Route index element={<AllQuestions />} />
+            <Route path="new" element={<QuestionForm />} />
+          </Route>
         </Routes>
     </div>
   </BrowserRouter>
