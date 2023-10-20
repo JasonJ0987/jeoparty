@@ -83,72 +83,87 @@ const QuestionForm = () => {
   }, [loadCategories]);
 
   return (
-    <div className="container">
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="question">Question</label>
-          <input
-            type="text"
-            name="question"
-            id="question"
-            value={question}
-            onChange={handleQuestionChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="answer">Answer</label>
-          <input
-            type="text"
-            name="answer"
-            id="answer"
-            value={answer}
-            onChange={handleAnswerChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="points">Points</label>
-          <input
-            type="integer"
-            name="points"
-            id="points"
-            value={points}
-            onChange={handlePointsChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="double_j">Double Jeoparty?</label>
-          <input
-            type="checkbox"
-            name="double_j"
-            id="double_j"
-            value={double_j}
-            onChange={handleDoubleChange}
-            checked={double_j}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="category_id" className="form-label">Choose a Category</label>
-          <select
-            onChange={handleCatIdChange}
-            value={catId}
-            name="category_id"
+    <div className="background">
+      <div className="container">
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label style={{ color: "#a202d8" }} htmlFor="question">
+              Question:
+            </label>
+            <input
+              type="text"
+              name="question"
+              id="question"
+              value={question}
+              onChange={handleQuestionChange}
+            />
+          </div>
+          <div className="form-group">
+            <label style={{ color: "#a202d8" }} htmlFor="answer">
+              Answer:
+            </label>
+            <input
+              type="text"
+              name="answer"
+              id="answer"
+              value={answer}
+              onChange={handleAnswerChange}
+            />
+          </div>
+          <div className="form-group">
+            <label style={{ color: "#a202d8" }} htmlFor="points">
+              Points:
+            </label>
+            <input
+              type="integer"
+              name="points"
+              id="points"
+              value={points}
+              onChange={handlePointsChange}
+            />
+          </div>
+          <div className="form-group">
+            <label style={{ color: "#a202d8" }} htmlFor="double_j">
+              Double Jeoparty?
+            </label>
+            <input
+              type="checkbox"
+              name="double_j"
+              id="double_j"
+              value={double_j}
+              onChange={handleDoubleChange}
+              checked={double_j}
+            />
+          </div>
+          <div className="form-group">
+            <label
+              style={{ color: "#a202d8" }}
+              htmlFor="category_id"
+              className="form-label"
+            >
+              Choose a Category: 
+            </label>
+            <select
+              onChange={handleCatIdChange}
+              value={catId}
+              name="category_id"
+            >
+              <option value="">------------------------</option>
+              {categories.map((cat) => (
+                <option value={cat.id} key={cat.id}>
+                  {cat.title}
+                </option>
+              ))}
+            </select>
+          </div>
+          <button
+            className="btn btn primary"
+            type="submit"
           >
-            <option value="">Categories</option>
-            {categories.map((cat) => (
-              <option value={cat.id} key={cat.id}>
-                {cat.title}
-              </option>
-            ))}
-          </select>
-        </div>
-        <button
-          className="btn btn primary"
-          type="submit"
-          onClick={handleSubmit}
-        >
-          Submit
-        </button>
-      </form>
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

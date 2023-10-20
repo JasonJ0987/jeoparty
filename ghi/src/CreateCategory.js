@@ -34,30 +34,32 @@ const CategoryForm = () => {
   };
 
   return (
-    <div className="container">
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="title">
-            Title
-          </label>
-          <input
-            type="text"
-            name="title"
-            id="title"
-            value={title}
-            onChange={handleTitleChange}
-          />
-        </div>
-        <button
-          className="btn btn primary"
-          type="submit"
-          onClick={handleSubmit}
-        >
-          Submit
-        </button>
-      </form>
+    <div className="background">
+      <div className="container">
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label style={{ color: "#a202d8" }} htmlFor="title">
+              Title: 
+            </label>
+            <input
+              type="text"
+              name="title"
+              id="title"
+              value={title}
+              onChange={handleTitleChange}
+              style={{ color: "#a202d8" }}
+            />
+          </div>
+          <button
+            className="btn btn primary"
+            type="submit"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
     </div>
-  )
+  );
 }
 
 export default CategoryForm;

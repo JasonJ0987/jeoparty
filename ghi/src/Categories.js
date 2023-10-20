@@ -23,23 +23,25 @@ const AllCategories = () => {
 
   useEffect(() => {
     loadCategories();
-  }, []);
+  }, [loadCategories]);
 
   return (
-    <div>
-      <h1>Categories</h1>
-      <ul>
-      {categories.map((cat) => (
-        <li key={cat.id}>
-          {cat.title}
-        </li>
-      ))}
-      </ul>
-      <Link to="/categories/new">
-        New Category
-      </Link>
+    <div className="background">
+      <div>
+        <h1 style={{ color: "rgb(0 112 228)", margin: "0px" }}>Categories</h1>
+        <ul>
+          {categories.map((cat) => (
+            <li style={{ color: "#a202d8" }} key={cat.id}>
+              {cat.title}
+            </li>
+          ))}
+        </ul>
+        <Link style={{ color: "rgb(0 112 228)" }} to="/categories/new">
+          New Category
+        </Link>
+      </div>
     </div>
-  )
+  );
 }
 
 export default AllCategories
