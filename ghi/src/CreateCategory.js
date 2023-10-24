@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 
 const CategoryForm = () => {
@@ -39,7 +39,7 @@ const CategoryForm = () => {
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label style={{ color: "#a202d8" }} htmlFor="title">
-              Title: 
+              Title:
             </label>
             <input
               type="text"

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState} from 'react';
 
 
 const QuestionForm = () => {
@@ -141,7 +141,7 @@ const QuestionForm = () => {
               htmlFor="category_id"
               className="form-label"
             >
-              Choose a Category: 
+              Choose a Category:
             </label>
             <select
               onChange={handleCatIdChange}

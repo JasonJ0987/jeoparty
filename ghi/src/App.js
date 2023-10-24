@@ -9,6 +9,8 @@ import AllCategories from "./Categories";
 import AllQuestions from "./Questions";
 import AllPlayers from "./Players";
 import PlayerForm from "./CreatePlayer";
+import AllGames from "./Game";
+import GameForm from "./CreateGame";
 
 function App() {
   return (
@@ -28,6 +30,10 @@ function App() {
           <Route path="players">
             <Route index element={<AllPlayers />} />
             <Route path="new" element={<PlayerForm />} />
+          </Route>
+          <Route path="games">
+            <Route index element={<AllGames />} />
+            <Route path="new" element={<GameForm />} />
           </Route>
         </Routes>
     </div>

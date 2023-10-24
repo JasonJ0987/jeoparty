@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 
 const PlayerForm = () => {
@@ -31,7 +31,7 @@ const PlayerForm = () => {
       });
     } else {
       const error = await response.json();
-      console.log("Error", error);
+      console.log("Error: ", error);
     }
   };
 

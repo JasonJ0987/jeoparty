@@ -15,6 +15,9 @@ function Navbar() {
       <Link to="/players">
         Players
       </Link>
+      <Link to="/games">
+        Games
+      </Link>
     </nav>
   )
 }
