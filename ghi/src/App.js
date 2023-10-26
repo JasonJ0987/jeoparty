@@ -9,16 +9,19 @@ import AllCategories from "./Categories";
 import AllQuestions from "./Questions";
 import AllPlayers from "./Players";
 import PlayerForm from "./CreatePlayer";
-import AllGames from "./Game";
 import GameForm from "./CreateGame";
+import Game from "./Game";
 
 function App() {
   return (
-  <BrowserRouter>
-    <div>
-      <Navbar />
+    <BrowserRouter>
+      <div>
+        <Navbar />
         <Routes>
-          <Route exact path="/" element={<Main />} />
+          <Route exact path="/" element={<Main />} >
+            <Route path="new" element={<GameForm />} />
+            <Route path=":id" element={<Game />} />
+          </Route>
           <Route path="categories">
             <Route index element={<AllCategories />} />
             <Route path="new" element={<CategoryForm />} />
@@ -31,13 +34,9 @@ function App() {
             <Route index element={<AllPlayers />} />
             <Route path="new" element={<PlayerForm />} />
           </Route>
-          <Route path="games">
-            <Route index element={<AllGames />} />
-            <Route path="new" element={<GameForm />} />
-          </Route>
         </Routes>
-    </div>
-  </BrowserRouter>
+      </div>
+    </BrowserRouter>
   );
 }
 
