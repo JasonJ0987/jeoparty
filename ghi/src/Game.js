@@ -449,6 +449,10 @@ const Game = () => {
       setPressed1(false);
       setPressed2(false);
       setPressed3(!pressed3);
+    } else {
+      setPressed1(false);
+      setPressed2(false);
+      setPressed3(false);
     }
   }
 
@@ -485,7 +489,7 @@ const Game = () => {
 
   useEffect(() => {
     document.addEventListener("keydown", handleBuzz);
-  }, [])
+  }, [pressed1, pressed2, pressed3])
 
 
   return (
@@ -871,6 +875,7 @@ const Game = () => {
               </div>
             </div>
           ))}
+          <audio src={`${process.env.PUBLIC_URL}/ping.mp3`}></audio>
       </div>
     </div>
   );
