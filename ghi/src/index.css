@@ -88,11 +88,41 @@ code {
   font-size: 20px;
 }
 
-.playerCard {
+.playerCard1 {
   width: 18vw;
   height: 10vh;
   border: white solid 2px;
   background-color: #610cea00;
+  text-align: center;
+  color: white;
+  font: bold;
+  font-size: 20px;
+}
+.playerCard2 {
+  width: 18vw;
+  height: 10vh;
+  border: white solid 2px;
+  background-color: #610cea00;
+  text-align: center;
+  color: white;
+  font: bold;
+  font-size: 20px;
+}
+.playerCard3 {
+  width: 18vw;
+  height: 10vh;
+  border: white solid 2px;
+  background-color: #610cea00;
+  text-align: center;
+  color: white;
+  font: bold;
+  font-size: 20px;
+}
+.activePlayerCard {
+  width: 18vw;
+  height: 10vh;
+  border: white solid 2px;
+  background-color: #9cea0c73;
   text-align: center;
   color: white;
   font: bold;

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Modal.css"
-import DoubleJeoparty from "./DoubleJeoparty";
 
 function Modal({ modalOpen, question }) {
   const [isAnswered, setIsAnswered] = useState(false);

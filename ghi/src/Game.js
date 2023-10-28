@@ -39,6 +39,10 @@ const Game = () => {
   const [qCard24, setQCard24] = useState(true);
   const [qCard25, setQCard25] = useState(true);
 
+  const [pressed1, setPressed1] = useState(false);
+  const [pressed2, setPressed2] = useState(false);
+  const [pressed3, setPressed3] = useState(false);
+
   const getGame = async () => {
     const url = `${process.env.REACT_APP_API_HOST}/api/games/${gameId}`;
     const fetchConfig = {
@@ -431,12 +435,57 @@ const Game = () => {
     removeAnswer25 = "hideAnswer"
   }
 
+  const handleBuzz = (event) => {
+    event.preventDefault();
+    if (event.key === "z") {
+      setPressed1(!pressed1);
+      setPressed2(false);
+      setPressed3(false);
+    } else if (event.key === "v") {
+      setPressed1(false);
+      setPressed2(!pressed2);
+      setPressed3(false);
+    } else if (event.key === "m") {
+      setPressed1(false);
+      setPressed2(false);
+      setPressed3(!pressed3);
+    }
+  }
+
+  let play1 = "playerCard1"
+
+  if (pressed1) {
+    play1 = "activePlayerCard"
+  } else {
+    play1= "playerCard1"
+  }
+
+  let play2 = "playerCard2"
+
+  if (pressed2) {
+    play2 = "activePlayerCard"
+  } else {
+    play2 = "playerCard2"
+  }
+
+  let play3 = "playerCard3"
+
+  if (pressed3) {
+    play3 = "activePlayerCard"
+  } else {
+    play3 = "playerCard3"
+  }
+
   useEffect(() => {
     getGame();
     getCategories();
     getQuestions();
     getPlayers();
   }, [players])
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleBuzz);
+  }, [])
 
 
   return (
@@ -783,7 +832,7 @@ const Game = () => {
         {players
           .filter((person) => person.id === 1)
           .map((player) => (
-            <div className="playerCard" key={player.id}>
+            <div className={play1} key={player.id}>
               <div>
                 <p style={{ marginBottom: "5px" }}>{player.name}:</p>
               </div>
@@ -797,7 +846,7 @@ const Game = () => {
         {players
           .filter((person) => person.id === 2)
           .map((player) => (
-            <div className="playerCard" key={player.id}>
+            <div className={play2} key={player.id}>
               <div>
                 <p style={{ marginBottom: "5px" }}>{player.name}:</p>
               </div>
@@ -811,7 +860,7 @@ const Game = () => {
         {players
           .filter((person) => person.id === 3)
           .map((player) => (
-            <div className="playerCard" key={player.id}>
+            <div className={play3} key={player.id}>
               <div>
                 <p style={{ marginBottom: "5px" }}>{player.name}:</p>
               </div>
@@ -831,6 +880,5 @@ export default Game;
 
 
 // To Do:
-//  1. Add Double Jeoparty function
 //  2. Create buzzer function
 //  3. Clean up visual
