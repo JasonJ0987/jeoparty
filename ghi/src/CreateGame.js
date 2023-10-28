@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useMemo } from 'react';
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 
 const GameForm = () => {
   const [formData, setFormData] = useState({
@@ -40,14 +40,13 @@ const GameForm = () => {
   const [questionsFour, setQuestionsFour] = useState([]);
   const [questionsFive, setQuestionsFive] = useState([]);
 
-
   const handleFormChange = (e) => {
     const value = e.target.value;
     const inputName = e.target.name;
-    setFormData({...formData, [inputName]: value})
+    setFormData({ ...formData, [inputName]: value });
   };
 
-  const loadCategories = useCallback(async() => {
+  const loadCategories = useCallback(async () => {
     const url = `${process.env.REACT_APP_API_HOST}/api/categories`;
     const fetchConfig = {
       method: "GET",
@@ -60,13 +59,13 @@ const GameForm = () => {
       const data = await response.json();
       setCategories(data);
     } else {
-      console.log("Failed to load categories")
+      console.log("Failed to load categories");
     }
   }, [formData]);
 
-  const loadQuestionsOne = useCallback(async() => {
+  const loadQuestionsOne = useCallback(async () => {
     const num = formData.category_1;
-    const url = `${process.env.REACT_APP_API_HOST}/api/questions/category/${num}`
+    const url = `${process.env.REACT_APP_API_HOST}/api/questions/category/${num}`;
     const fetchConfig = {
       method: "GET",
       headers: {
@@ -78,13 +77,13 @@ const GameForm = () => {
       const data = await response.json();
       setQuestionsOne(data);
     } else {
-      console.log("Please set category 1")
+      console.log("Please set category 1");
     }
-  }, [formData])
+  }, [formData]);
 
-  const loadQuestionsTwo = useCallback(async() => {
+  const loadQuestionsTwo = useCallback(async () => {
     const num = formData.category_2;
-    const url = `${process.env.REACT_APP_API_HOST}/api/questions/category/${num}`
+    const url = `${process.env.REACT_APP_API_HOST}/api/questions/category/${num}`;
     const fetchConfig = {
       method: "GET",
       headers: {
@@ -96,9 +95,9 @@ const GameForm = () => {
       const data = await response.json();
       setQuestionsTwo(data);
     } else {
-      console.log("Please set category 2")
+      console.log("Please set category 2");
     }
-  }, [formData])
+  }, [formData]);
 
   const loadQuestionsThree = useCallback(async () => {
     const num = formData.category_3;
@@ -200,7 +199,7 @@ const GameForm = () => {
       });
     } else {
       const error = await response.json();
-      console.log("Error: ", error)
+      console.log("Error: ", error);
     }
   };
 
@@ -211,7 +210,7 @@ const GameForm = () => {
     loadQuestionsThree();
     loadQuestionsFour();
     loadQuestionsFive();
-  }, [formData])
+  }, [formData]);
 
   return (
     <div className="background">
@@ -317,12 +316,11 @@ const GameForm = () => {
               name="question_1"
             >
               <option value="">-----</option>
-              {questionsOne
-                .map((quest) => (
-                  <option value={quest.id} key={quest.id}>
-                    {quest.question}
-                  </option>
-                ))}
+              {questionsOne.map((quest) => (
+                <option value={quest.id} key={quest.id}>
+                  {quest.question}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -336,12 +334,11 @@ const GameForm = () => {
               name="question_2"
             >
               <option value="">-----</option>
-              {questionsOne
-                .map((quest) => (
-                  <option value={quest.id} key={quest.id}>
-                    {quest.question}
-                  </option>
-                ))}
+              {questionsOne.map((quest) => (
+                <option value={quest.id} key={quest.id}>
+                  {quest.question}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -355,12 +352,11 @@ const GameForm = () => {
               name="question_3"
             >
               <option value="">-----</option>
-              {questionsOne
-                .map((quest) => (
-                  <option value={quest.id} key={quest.id}>
-                    {quest.question}
-                  </option>
-                ))}
+              {questionsOne.map((quest) => (
+                <option value={quest.id} key={quest.id}>
+                  {quest.question}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -374,12 +370,11 @@ const GameForm = () => {
               name="question_4"
             >
               <option value="">-----</option>
-              {questionsOne
-                .map((quest) => (
-                  <option value={quest.id} key={quest.id}>
-                    {quest.question}
-                  </option>
-                ))}
+              {questionsOne.map((quest) => (
+                <option value={quest.id} key={quest.id}>
+                  {quest.question}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -393,12 +388,11 @@ const GameForm = () => {
               name="question_5"
             >
               <option value="">-----</option>
-              {questionsOne
-                .map((quest) => (
-                  <option value={quest.id} key={quest.id}>
-                    {quest.question}
-                  </option>
-                ))}
+              {questionsOne.map((quest) => (
+                <option value={quest.id} key={quest.id}>
+                  {quest.question}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -412,12 +406,11 @@ const GameForm = () => {
               name="question_6"
             >
               <option value="">-----</option>
-              {questionsTwo
-                .map((quest) => (
-                  <option value={quest.id} key={quest.id}>
-                    {quest.question}
-                  </option>
-                ))}
+              {questionsTwo.map((quest) => (
+                <option value={quest.id} key={quest.id}>
+                  {quest.question}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -431,12 +424,11 @@ const GameForm = () => {
               name="question_7"
             >
               <option value="">-----</option>
-              {questionsTwo
-                .map((quest) => (
-                  <option value={quest.id} key={quest.id}>
-                    {quest.question}
-                  </option>
-                ))}
+              {questionsTwo.map((quest) => (
+                <option value={quest.id} key={quest.id}>
+                  {quest.question}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -450,12 +442,11 @@ const GameForm = () => {
               name="question_8"
             >
               <option value="">-----</option>
-              {questionsTwo
-                .map((quest) => (
-                  <option value={quest.id} key={quest.id}>
-                    {quest.question}
-                  </option>
-                ))}
+              {questionsTwo.map((quest) => (
+                <option value={quest.id} key={quest.id}>
+                  {quest.question}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -469,12 +460,11 @@ const GameForm = () => {
               name="question_9"
             >
               <option value="">-----</option>
-              {questionsTwo
-                .map((quest) => (
-                  <option value={quest.id} key={quest.id}>
-                    {quest.question}
-                  </option>
-                ))}
+              {questionsTwo.map((quest) => (
+                <option value={quest.id} key={quest.id}>
+                  {quest.question}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -488,12 +478,11 @@ const GameForm = () => {
               name="question_10"
             >
               <option value="">-----</option>
-              {questionsTwo
-                .map((quest) => (
-                  <option value={quest.id} key={quest.id}>
-                    {quest.question}
-                  </option>
-                ))}
+              {questionsTwo.map((quest) => (
+                <option value={quest.id} key={quest.id}>
+                  {quest.question}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -507,12 +496,11 @@ const GameForm = () => {
               name="question_11"
             >
               1<option value="">-----</option>
-              {questionsThree
-                .map((quest) => (
-                  <option value={quest.id} key={quest.id}>
-                    {quest.question}
-                  </option>
-                ))}
+              {questionsThree.map((quest) => (
+                <option value={quest.id} key={quest.id}>
+                  {quest.question}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -526,12 +514,11 @@ const GameForm = () => {
               name="question_12"
             >
               <option value="">-----</option>
-              {questionsThree
-                .map((quest) => (
-                  <option value={quest.id} key={quest.id}>
-                    {quest.question}
-                  </option>
-                ))}
+              {questionsThree.map((quest) => (
+                <option value={quest.id} key={quest.id}>
+                  {quest.question}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -545,12 +532,11 @@ const GameForm = () => {
               name="question_13"
             >
               <option value="">-----</option>
-              {questionsThree
-                .map((quest) => (
-                  <option value={quest.id} key={quest.id}>
-                    {quest.question}
-                  </option>
-                ))}
+              {questionsThree.map((quest) => (
+                <option value={quest.id} key={quest.id}>
+                  {quest.question}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -564,12 +550,11 @@ const GameForm = () => {
               name="question_14"
             >
               <option value="">-----</option>
-              {questionsThree
-                .map((quest) => (
-                  <option value={quest.id} key={quest.id}>
-                    {quest.question}
-                  </option>
-                ))}
+              {questionsThree.map((quest) => (
+                <option value={quest.id} key={quest.id}>
+                  {quest.question}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -583,12 +568,11 @@ const GameForm = () => {
               name="question_15"
             >
               <option value="">-----</option>
-              {questionsThree
-                .map((quest) => (
-                  <option value={quest.id} key={quest.id}>
-                    {quest.question}
-                  </option>
-                ))}
+              {questionsThree.map((quest) => (
+                <option value={quest.id} key={quest.id}>
+                  {quest.question}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -602,12 +586,11 @@ const GameForm = () => {
               name="question_16"
             >
               <option value="">-----</option>
-              {questionsFour
-                .map((quest) => (
-                  <option value={quest.id} key={quest.id}>
-                    {quest.question}
-                  </option>
-                ))}
+              {questionsFour.map((quest) => (
+                <option value={quest.id} key={quest.id}>
+                  {quest.question}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -621,12 +604,11 @@ const GameForm = () => {
               name="question_17"
             >
               <option value="">-----</option>
-              {questionsFour
-                .map((quest) => (
-                  <option value={quest.id} key={quest.id}>
-                    {quest.question}
-                  </option>
-                ))}
+              {questionsFour.map((quest) => (
+                <option value={quest.id} key={quest.id}>
+                  {quest.question}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -640,12 +622,11 @@ const GameForm = () => {
               name="question_18"
             >
               <option value="">-----</option>
-              {questionsFour
-                .map((quest) => (
-                  <option value={quest.id} key={quest.id}>
-                    {quest.question}
-                  </option>
-                ))}
+              {questionsFour.map((quest) => (
+                <option value={quest.id} key={quest.id}>
+                  {quest.question}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -659,12 +640,11 @@ const GameForm = () => {
               name="question_19"
             >
               <option value="">-----</option>
-              {questionsFour
-                .map((quest) => (
-                  <option value={quest.id} key={quest.id}>
-                    {quest.question}
-                  </option>
-                ))}
+              {questionsFour.map((quest) => (
+                <option value={quest.id} key={quest.id}>
+                  {quest.question}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -678,12 +658,11 @@ const GameForm = () => {
               name="question_20"
             >
               <option value="">-----</option>
-              {questionsFour
-                .map((quest) => (
-                  <option value={quest.id} key={quest.id}>
-                    {quest.question}
-                  </option>
-                ))}
+              {questionsFour.map((quest) => (
+                <option value={quest.id} key={quest.id}>
+                  {quest.question}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -697,12 +676,11 @@ const GameForm = () => {
               name="question_21"
             >
               <option value="">-----</option>
-              {questionsFive
-                .map((quest) => (
-                  <option value={quest.id} key={quest.id}>
-                    {quest.question}
-                  </option>
-                ))}
+              {questionsFive.map((quest) => (
+                <option value={quest.id} key={quest.id}>
+                  {quest.question}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -716,12 +694,11 @@ const GameForm = () => {
               name="question_22"
             >
               <option value="">-----</option>
-              {questionsFive
-                .map((quest) => (
-                  <option value={quest.id} key={quest.id}>
-                    {quest.question}
-                  </option>
-                ))}
+              {questionsFive.map((quest) => (
+                <option value={quest.id} key={quest.id}>
+                  {quest.question}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -735,12 +712,11 @@ const GameForm = () => {
               name="question_23"
             >
               <option value="">-----</option>
-              {questionsFive
-                .map((quest) => (
-                  <option value={quest.id} key={quest.id}>
-                    {quest.question}
-                  </option>
-                ))}
+              {questionsFive.map((quest) => (
+                <option value={quest.id} key={quest.id}>
+                  {quest.question}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -754,12 +730,11 @@ const GameForm = () => {
               name="question_24"
             >
               <option value="">-----</option>
-              {questionsFive
-                .map((quest) => (
-                  <option value={quest.id} key={quest.id}>
-                    {quest.question}
-                  </option>
-                ))}
+              {questionsFive.map((quest) => (
+                <option value={quest.id} key={quest.id}>
+                  {quest.question}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -773,24 +748,20 @@ const GameForm = () => {
               name="question_25"
             >
               <option value="">-----</option>
-              {questionsFive
-                .map((quest) => (
-                  <option value={quest.id} key={quest.id}>
-                    {quest.question}
-                  </option>
-                ))}
+              {questionsFive.map((quest) => (
+                <option value={quest.id} key={quest.id}>
+                  {quest.question}
+                </option>
+              ))}
             </select>
           </div>
-          <button
-            className="btn btn-primary"
-            type="submit"
-          >
+          <button className="btn btn-primary" type="submit">
             Submit
           </button>
         </form>
       </div>
     </div>
   );
-}
+};
 
 export default GameForm;

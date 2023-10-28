@@ -23,6 +23,7 @@ const AllPlayers = () => {
 
   useEffect(() => {
     loadPlayers();
+    console.log(players)
   }, [loadPlayers])
 
   return (

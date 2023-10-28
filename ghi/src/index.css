@@ -26,3 +26,86 @@ code {
   background-color: #a202d8;
   border-bottom: black solid 2px;
 }
+
+.questionCard {
+  width: 18vw;
+  height: 10vh;
+  overflow: hidden;
+  border-color: white;
+  border-style: solid;
+  border-width: 1px 2px 1px 2px;
+  background-color: #610cea83;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font: bold;
+  font-size: 20px;
+}
+
+.topQuestionCard {
+  width: 18vw;
+  height: 10vh;
+  overflow: hidden;
+  border-color: white;
+  border-style: solid;
+  border-width: 2px 2px 1px 2px;
+  background-color: #610cea83;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font: bold;
+  font-size: 20px;
+}
+.botQuestionCard {
+  width: 18vw;
+  height: 10vh;
+  overflow: hidden;
+  border-color: white;
+  border-style: solid;
+  border-width: 1px 2px 2px 2px;
+  background-color: #610cea83;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font: bold;
+  font-size: 20px;
+}
+
+.catCard {
+  width: 18vw;
+  height: 10vh;
+  overflow: hidden;
+  border: white solid 2px;
+  background-color: #610cea00;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font: bold;
+  font-size: 20px;
+}
+
+.playerCard {
+  width: 18vw;
+  height: 10vh;
+  border: white solid 2px;
+  background-color: #610cea00;
+  text-align: center;
+  color: white;
+  font: bold;
+  font-size: 20px;
+}
+
+.hideAnswer {
+  display: none;
+}
+
+
+.playerPoints {
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+}

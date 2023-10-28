@@ -18,9 +18,10 @@ function App() {
       <div>
         <Navbar />
         <Routes>
-          <Route exact path="/" element={<Main />} >
+          <Route path="/">
+            <Route index element={<Main />} />
             <Route path="new" element={<GameForm />} />
-            <Route path=":id" element={<Game />} />
+            <Route path=":gameId" element={<Game />} />
           </Route>
           <Route path="categories">
             <Route index element={<AllCategories />} />

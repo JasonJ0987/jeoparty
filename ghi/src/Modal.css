@@ -1,0 +1,66 @@
+.modalBackground {
+  width: 100vw;
+  height: 100vh;
+  background: url("jpt.png") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContainer {
+  width: 500px;
+  height: 500px;
+  border-radius: 12px;
+  background-color: #610cea70;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.modalContainer .modalQuestion{
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
+  color: white;
+}
+
+.closer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.closeButton {
+  background-color: transparent;
+  border: none;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.modalAnswer {
+  flex: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.7rem;
+  text-align: center;
+  color: white;
+}
+
+.DJ {
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
+  color: white;
+  font-style: bold;
+  font-size: 25px;
+}
+
+.hidden {
+  display: none;
+}
